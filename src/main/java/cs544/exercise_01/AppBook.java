@@ -1,5 +1,7 @@
 package cs544.exercise_01;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -39,7 +41,7 @@ public class AppBook {
 
             // Create new instance of Car and set values in it
             Book book1 = new Book("Enterprise Architecture", "123-456-789", "Komakech", 2000.0);
-            Book book2 = new Book("Java Beginners", "123-456-789", "Komakech", 45000.0);
+            Book book2 = new Book("Java Beginners", "123-456-789", "Gideon", 45000.0);
             Book book3 = new Book("Software design principles", "123-456-789", "Philip",15000.0);
             
             // save the Book
@@ -60,6 +62,26 @@ public class AppBook {
                 session.close();
             }
         }
+        
+        try {
+        	session = sessionFactory.openSession();
+        	tx = session.beginTransaction();
+        	
+        	//get a list of Books
+        	@SuppressWarnings("unchecked")
+			List<Book> listBook = session.createQuery("from Book").list();
+        	
+        	System.out.println(listBook);
+        	
+        }catch(HibernateException e) {
+        	
+        }
+        finally {
+        	
+        	
+        }
+        
+        
         
         
         
