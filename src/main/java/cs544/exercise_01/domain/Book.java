@@ -1,6 +1,7 @@
 package cs544.exercise_01.domain;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,19 +31,19 @@ public class Book {
 	private double price;
 	
 	@Temporal(TemporalType.DATE)
-	private LocalDate publish_date;
+	private Date publish_date;
 	
 
 	public Book() {
 		
 	}
 
-	public Book(String title, String iSBN, String author, double price) {
+	public Book(String title, String iSBN, String author, double price,Date publish_date) {
 		this.title = title;
 		ISBN = iSBN;
 		this.author = author;
 		this.price = price;
-		//this.publish_date = publish_date;
+		this.publish_date = publish_date;
 	}
 
 	public Long getId() {
@@ -81,12 +82,18 @@ public class Book {
 		this.price = price;
 	}
 
-	public LocalDate getPublish_date() {
+	public Date getPublish_date() {
 		return publish_date;
 	}
 
-	public void setPublish_date(LocalDate publish_date) {
+	public void setPublish_date(Date publish_date) {
 		this.publish_date = publish_date;
+	}
+
+	@Override
+	public String toString() {
+		return "Book [Id=" + Id + ", title=" + title + ", ISBN=" + ISBN + ", author=" + author + ", price=" + price
+				+ ", publish_date=" + publish_date + "]";
 	}
 	
 	
